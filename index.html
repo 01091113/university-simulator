@@ -1,76 +1,162 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>대학 시뮬레이터</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>대학 시뮬레이터</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body data-theme="pastel-sky">
+  <div id="app">
+    <section id="start-screen" class="screen active">
+      <div class="start-card">
+        <div class="start-title-row">
+          <h1>🎓 대학 시뮬레이터</h1>
+          <button class="secondary-btn small-btn" id="open-gallery-btn">엔딩 갤러리</button>
+        </div>
+        <p class="subtitle">무엇을 택해도 그게 다 좋은 거였으면 하는 대학 생활 시뮬레이터</p>
 
-<div id="start-screen" class="screen active">
-  <div class="start-card">
-    <h1>🎓 대학 시뮬레이터</h1>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="player-name">이름</label>
+            <input id="player-name" type="text" placeholder="이름 입력" />
+          </div>
 
-    <input id="name" placeholder="이름">
+          <div class="form-group">
+            <label for="player-gender">성별</label>
+            <select id="player-gender">
+              <option value="female">여성</option>
+              <option value="male">남성</option>
+              <option value="other">기타</option>
+            </select>
+          </div>
 
-    <select id="gender">
-      <option value="male">남성</option>
-      <option value="female">여성</option>
-    </select>
+          <div class="form-group">
+            <label for="player-college">단과대학</label>
+            <select id="player-college"></select>
+          </div>
 
-    <select id="college"></select>
-    <select id="major"></select>
+          <div class="form-group">
+            <label for="player-major">소속 학과</label>
+            <select id="player-major"></select>
+          </div>
 
-    <select id="theme">
-      <option value="pastel1">파스텔 블루</option>
-      <option value="pastel2">파스텔 민트</option>
-      <option value="pastel3">파스텔 퍼플</option>
-      <option value="pastel4">파스텔 피치</option>
-      <option value="pastel5">파스텔 옐로우</option>
-      <option value="mono1">회색</option>
-      <option value="mono2">곤색</option>
-      <option value="cotton">솜사탕</option>
-      <option value="banana">바나나</option>
-    </select>
+          <div class="form-group">
+            <label for="player-theme">테마 색상</label>
+            <select id="player-theme">
+              <option value="pastel-sky">파스텔 스카이</option>
+              <option value="pastel-mint">파스텔 민트</option>
+              <option value="pastel-lavender">파스텔 라벤더</option>
+              <option value="pastel-peach">파스텔 피치</option>
+              <option value="pastel-lemon">파스텔 레몬</option>
+              <option value="mono-gray">모노톤 회색</option>
+              <option value="mono-navy">모노톤 곤색</option>
+              <option value="cotton-candy">솜사탕</option>
+              <option value="banana-choco">바나나</option>
+            </select>
+          </div>
 
-    <button onclick="startGame()">게임 시작</button>
+          <div class="form-group">
+            <label for="save-slot">저장 슬롯</label>
+            <select id="save-slot">
+              <option value="slot1">슬롯 1</option>
+              <option value="slot2">슬롯 2</option>
+              <option value="slot3">슬롯 3</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="theme-preview-row">
+          <span class="theme-chip sky">스카이</span>
+          <span class="theme-chip mint">민트</span>
+          <span class="theme-chip lavender">라벤더</span>
+          <span class="theme-chip peach">피치</span>
+          <span class="theme-chip lemon">레몬</span>
+          <span class="theme-chip gray">회색</span>
+          <span class="theme-chip navy">곤색</span>
+          <span class="theme-chip cotton">솜사탕</span>
+          <span class="theme-chip banana">바나나</span>
+        </div>
+
+        <div class="major-info-box" id="major-info-box">선택한 학과의 특징과 보정치가 여기에 표시됩니다.</div>
+
+        <div class="slot-actions">
+          <button class="secondary-btn" id="load-slot-btn">선택 슬롯 불러오기</button>
+          <button class="primary-btn" id="start-game-btn">게임 시작</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="game-screen" class="screen">
+      <header class="top-bar">
+        <div class="title-block">
+          <h1>🎓 대학 시뮬레이터</h1>
+          <p class="subtitle">공부도, 사랑도, 덕질도, 취업도. 다 지나고 나면 결국 대학 시절이었다.</p>
+          <div id="profile-line" class="profile-line"></div>
+        </div>
+        <div class="top-meta">
+          <span class="meta-pill" id="grade-pill">1학년</span>
+          <span class="meta-pill" id="turn-pill">1 / 56턴</span>
+          <span class="meta-pill" id="month-pill">개강</span>
+          <span class="meta-pill" id="slot-pill">슬롯 1</span>
+        </div>
+      </header>
+
+      <main class="game-layout">
+        <aside class="panel status-panel">
+          <div class="panel-header-row">
+            <h2 id="status-title">플레이어의 상태</h2>
+            <button class="icon-btn" id="save-now-btn" title="저장">💾</button>
+          </div>
+          <div id="status-list"></div>
+
+          <h3>현재 상태</h3>
+          <div id="state-badges"></div>
+
+          <h3>경고</h3>
+          <div id="warning-box"></div>
+
+          <h3>업적</h3>
+          <div id="achievement-box"></div>
+        </aside>
+
+        <section class="panel event-panel">
+          <div class="panel-header-row">
+            <h2 id="event-title">대학 생활 시작</h2>
+            <div class="right-actions">
+              <button class="secondary-btn small-btn" id="manual-gallery-btn">엔딩 갤러리</button>
+              <button class="secondary-btn small-btn" id="back-start-btn">처음 화면</button>
+            </div>
+          </div>
+          <p id="event-description">새내기의 대학 생활이 시작되었다.</p>
+          <div id="choice-buttons"></div>
+        </section>
+
+        <section class="panel log-panel">
+          <h2>로그</h2>
+          <div id="log-warning-pin"></div>
+          <div id="story-log"></div>
+        </section>
+      </main>
+    </section>
+
+    <section id="gallery-screen" class="screen">
+      <div class="gallery-card">
+        <div class="panel-header-row">
+          <h1>🏁 엔딩 갤러리</h1>
+          <button class="secondary-btn" id="close-gallery-btn">닫기</button>
+        </div>
+        <div id="gallery-list" class="gallery-list"></div>
+      </div>
+    </section>
   </div>
-</div>
 
-<div id="game-screen" class="screen">
-  <div class="top-bar">
-    <div id="top-info"></div>
-  </div>
-
-  <div class="layout">
-    <div class="panel status-panel">
-      <h2 id="status-title"></h2>
-      <div id="status"></div>
-    </div>
-
-    <div class="panel event-panel">
-      <h2 id="event-title"></h2>
-      <p id="event-text"></p>
-      <div id="choices"></div>
-    </div>
-
-    <div class="panel log-panel">
-      <h2>기록</h2>
-      <ul id="log"></ul>
-    </div>
-  </div>
-</div>
-
-<script src="majors.js"></script>
-<script src="player.js"></script>
-<script src="events.js"></script>
-<script src="choices.js"></script>
-<script src="engine.js"></script>
-<script src="endings.js"></script>
-<script src="story.js"></script>
-<script src="theme.js"></script>
-<script src="save.js"></script>
-<script src="main.js"></script>
-
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/save.js"></script>
+  <script src="js/endings.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
