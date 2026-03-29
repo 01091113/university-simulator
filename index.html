@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>대학 시뮬레이터</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="top-bar">
+  <h1>🎓 대학 시뮬레이터</h1>
+  <div id="top-info"></div>
+</div>
+
+<div class="layout">
+  <div class="panel" id="status-panel">
+    <h2>상태</h2>
+    <div id="status"></div>
+  </div>
+
+  <div class="panel" id="event-panel">
+    <h2 id="event-title">이벤트</h2>
+    <p id="event-text"></p>
+    <div id="choices"></div>
+  </div>
+
+  <div class="panel" id="log-panel">
+    <h2>기록</h2>
+    <ul id="log"></ul>
+  </div>
+</div>
+
+<script src="js/player.js"></script>
+<script src="js/random.js"></script>
+<script src="js/state.js"></script>
+<script src="js/events.js"></script>
+<script src="js/choices.js"></script>
+<script src="js/endings.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>

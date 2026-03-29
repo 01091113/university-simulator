@@ -1,0 +1,14 @@
+
+let player = {
+ name: "플레이어",
+ turn: 1,
+ grade: 1,
+ stress: 20,
+ gradePoint: 55,
+ relationship: 50,
+ career: 0,
+ otaku: 25,
+ love: 25,
+ money: 0,
+ logs: []
+};
