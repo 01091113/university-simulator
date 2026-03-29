@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,38 +7,70 @@
 </head>
 <body>
 
-<div class="top-bar">
-  <h1>🎓 대학 시뮬레이터</h1>
-  <div id="top-info"></div>
+<div id="start-screen" class="screen active">
+  <div class="start-card">
+    <h1>🎓 대학 시뮬레이터</h1>
+
+    <input id="name" placeholder="이름">
+
+    <select id="gender">
+      <option value="male">남성</option>
+      <option value="female">여성</option>
+    </select>
+
+    <select id="college"></select>
+    <select id="major"></select>
+
+    <select id="theme">
+      <option value="pastel1">파스텔 블루</option>
+      <option value="pastel2">파스텔 민트</option>
+      <option value="pastel3">파스텔 퍼플</option>
+      <option value="pastel4">파스텔 피치</option>
+      <option value="pastel5">파스텔 옐로우</option>
+      <option value="mono1">회색</option>
+      <option value="mono2">곤색</option>
+      <option value="cotton">솜사탕</option>
+      <option value="banana">바나나</option>
+    </select>
+
+    <button onclick="startGame()">게임 시작</button>
+  </div>
 </div>
 
-<div class="layout">
-  <div class="panel" id="status-panel">
-    <h2>상태</h2>
-    <div id="status"></div>
+<div id="game-screen" class="screen">
+  <div class="top-bar">
+    <div id="top-info"></div>
   </div>
 
-  <div class="panel" id="event-panel">
-    <h2 id="event-title">이벤트</h2>
-    <p id="event-text"></p>
-    <div id="choices"></div>
-  </div>
+  <div class="layout">
+    <div class="panel status-panel">
+      <h2 id="status-title"></h2>
+      <div id="status"></div>
+    </div>
 
-  <div class="panel" id="log-panel">
-    <h2>기록</h2>
-    <ul id="log"></ul>
+    <div class="panel event-panel">
+      <h2 id="event-title"></h2>
+      <p id="event-text"></p>
+      <div id="choices"></div>
+    </div>
+
+    <div class="panel log-panel">
+      <h2>기록</h2>
+      <ul id="log"></ul>
+    </div>
   </div>
 </div>
 
-<script src="js/player.js"></script>
-<script src="js/random.js"></script>
-<script src="js/state.js"></script>
-<script src="js/events.js"></script>
-<script src="js/choices.js"></script>
-<script src="js/endings.js"></script>
-<script src="js/engine.js"></script>
-<script src="js/ui.js"></script>
-<script src="js/main.js"></script>
+<script src="majors.js"></script>
+<script src="player.js"></script>
+<script src="events.js"></script>
+<script src="choices.js"></script>
+<script src="engine.js"></script>
+<script src="endings.js"></script>
+<script src="story.js"></script>
+<script src="theme.js"></script>
+<script src="save.js"></script>
+<script src="main.js"></script>
 
 </body>
 </html>
