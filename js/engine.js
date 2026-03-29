@@ -1,11 +1,25 @@
-
 function nextTurn(){
  player.turn++;
+
  if(player.turn % 14 === 0) player.grade++;
- let ev = events[rand(0, events.length-1)];
- applyEffects(ev.effects);
- addLog(ev.title);
+
+ randomEvent();
+ applyMajorBonus();
  updateUI();
- let ending = checkEnding();
- if(ending) alert(ending + " 엔딩");
+ checkEnding();
+}
+
+function randomEvent(){
+ if(Math.random() < 0.2){
+  let e = events[Math.floor(Math.random()*events.length)];
+  applyEffect(e.effect);
+  addLog(e.text);
+ }
+}
+
+function applyMajorBonus(){
+ let bonus = colleges[player.college][player.major];
+ for(let k in bonus){
+  player[k] += bonus[k];
+ }
 }
